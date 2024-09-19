@@ -3,8 +3,12 @@ package com.george.books_service.controller;
 import com.george.books_service.entity.Book;
 import com.george.books_service.service.GoogleBooksService;
 import com.george.books_service.repository.BookRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/books")
@@ -20,15 +24,19 @@ public class BookController {
     @GetMapping("/search")
     public ResponseEntity<Book> searchBook(@RequestParam String title) {
         Book book = googleBooksService.searchBookByTitle(title);
-        return ResponseEntity.ok(book);
+        return book != null ? ResponseEntity.ok(book) : ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    public ResponseEntity<Book> addBookToDatabase(@RequestBody Book book) {
-        Book savedBook = googleBooksService.saveBook(book);
+    public ResponseEntity<Book> addBookToDatabase(@RequestBody @Valid Book book) {
+        Optional<Book> existingBook = bookRepository.findByGoogleBookId(book.getGoogleBookId());
+        if (existingBook.isPresent()) {
+            return ResponseEntity.badRequest().build(); // or handle as needed
+        }
+
+        Book savedBook = bookRepository.save(book);
         return ResponseEntity.ok(savedBook);
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
@@ -38,7 +46,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book bookDetails) {
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody @Valid Book bookDetails) {
         return bookRepository.findById(id)
                 .map(book -> {
                     book.setTitle(bookDetails.getTitle());
@@ -55,7 +63,7 @@ public class BookController {
         return bookRepository.findById(id)
                 .map(book -> {
                     bookRepository.delete(book);
-                    return ResponseEntity.ok().build();
+                    return ResponseEntity.noContent().build();
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
