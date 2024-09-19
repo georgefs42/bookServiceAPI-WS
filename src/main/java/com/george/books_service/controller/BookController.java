@@ -27,16 +27,27 @@ public class BookController {
         return book != null ? ResponseEntity.ok(book) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping
-    public ResponseEntity<Book> addBookToDatabase(@RequestBody @Valid Book book) {
-        Optional<Book> existingBook = bookRepository.findByGoogleBookId(book.getGoogleBookId());
-        if (existingBook.isPresent()) {
-            return ResponseEntity.badRequest().build(); // or handle as needed
+    @PostMapping("/add")
+    public ResponseEntity<Book> addBookToDatabase(@RequestParam String title) {
+        // Step 1: Search for the book using the external API
+        Book book = googleBooksService.searchBookByTitle(title);
+
+        if (book == null) {
+            return ResponseEntity.notFound().build(); // Return 404 if the book is not found in the API
         }
 
+        // Step 2: Check if the book already exists in the database
+        Optional<Book> existingBook = bookRepository.findByGoogleBookId(book.getGoogleBookId());
+        if (existingBook.isPresent()) {
+            return ResponseEntity.badRequest().build(); // Return 400 if the book already exists in the database
+        }
+
+        // Step 3: Save the book to the database
         Book savedBook = bookRepository.save(book);
-        return ResponseEntity.ok(savedBook);
+        return ResponseEntity.ok(savedBook); // Return 200 with the saved book
     }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
