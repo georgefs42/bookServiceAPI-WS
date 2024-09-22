@@ -6,29 +6,30 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
-@Entity
+@Entity // Indicates that this class is a JPA entity
 public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Marks this field as the primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Specifies that the ID should be auto-generated
     private Long id;
 
-    @NotBlank
+    @NotBlank // Ensures that the title cannot be null or empty
     private String title;
 
-    @NotBlank
+    @NotBlank // Ensures that the author cannot be null or empty
     private String author;
 
-    @NotBlank
+    @NotBlank // Ensures that the description cannot be null or empty
     private String description;
 
-    private String publishedDate;
+    private String publishedDate; // Field for the book's publication date
 
-    @NotBlank
+    @NotBlank // Ensures that the Google Book ID cannot be null or empty
     private String googleBookId;
 
-    // Constructors
+    // Default constructor
     public Book() {}
 
+    // Constructor with parameters for easy instantiation
     public Book(String title, String author, String description, String publishedDate, String googleBookId) {
         this.title = title;
         this.author = author;
@@ -37,53 +38,53 @@ public class Book {
         this.googleBookId = googleBookId;
     }
 
-    // Getters and Setters
+    // Getters and Setters for each field
     public Long getId() {
-        return id;
+        return id; // Returns the book ID
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id = id; // Sets the book ID
     }
 
     public String getTitle() {
-        return title;
+        return title; // Returns the book title
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title; // Sets the book title
     }
 
     public String getAuthor() {
-        return author;
+        return author; // Returns the book author
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        this.author = author; // Sets the book author
     }
 
     public String getDescription() {
-        return description;
+        return description; // Returns the book description
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description; // Sets the book description
     }
 
     public String getPublishedDate() {
-        return publishedDate;
+        return publishedDate; // Returns the book's published date
     }
 
     public void setPublishedDate(String publishedDate) {
-        this.publishedDate = publishedDate;
+        this.publishedDate = publishedDate; // Sets the book's published date
     }
 
     public String getGoogleBookId() {
-        return googleBookId;
+        return googleBookId; // Returns the Google Book ID
     }
 
     public void setGoogleBookId(String googleBookId) {
-        this.googleBookId = googleBookId;
+        this.googleBookId = googleBookId; // Sets the Google Book ID
     }
 
     @Override
@@ -95,6 +96,6 @@ public class Book {
                 ", description='" + description + '\'' +
                 ", publishedDate='" + publishedDate + '\'' +
                 ", googleBookId='" + googleBookId + '\'' +
-                '}';
+                '}'; // Provides a string representation of the book object
     }
 }
