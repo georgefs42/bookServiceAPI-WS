@@ -1,21 +1,5 @@
-// Function to accept cookies
-document.getElementById("acceptCookiesButton").addEventListener("click", function() {
-    document.getElementById("cookieBanner").style.display = 'none';
-    document.cookie = "cookiesAccepted=true; path=/"; // Save cookie acceptance
-});
-
-// Check if the cookies have been accepted at startup
-window.onload = function() {
-    if (document.cookie.indexOf("cookiesAccepted=true") === -1) {
-        document.getElementById("cookieBanner").style.display = 'block'; // Show cookie banner if not accepted
-    } else {
-        document.getElementById("cookieBanner").style.display = 'none'; // Hide cookie banner if accepted
-    }
-    loadSavedBooks(); // Load saved books when the page loads
-};
-
 // Sign-out and go back to index.html
-document.getElementById("signOutButton").addEventListener("click", function() {
+document.getElementById("logoutButton").addEventListener("click", function() {
     // Clear session or any related sign-in data
     window.location.href = "/index.html"; // Redirect to login page
 });
@@ -130,27 +114,15 @@ function displaySavedBooks(books) {
             <p>Author(s): ${book.author}</p>
             <p>Description: ${book.description}</p>
             <p>Published Date: ${book.publishedDate}</p>
-            <button onclick="fillUpdateForm(${book.id}, '${book.title}', '${book.author}', '${book.description}', '${book.publishedDate}', '${book.googleBookId}')">Update</button>
         `;
         savedBooksDiv.appendChild(bookDiv); // Append the book div to saved books
     });
 }
 
-// Fill update form with existing book data
-function fillUpdateForm(id, title, author, description, publishedDate, googleBookId) {
-    document.getElementById("bookIdToUpdate").value = id;
-    document.getElementById("bookTitleUpdateInput").value = title;
-    document.getElementById("bookAuthorUpdateInput").value = author;
-    document.getElementById("bookDescriptionUpdateInput").value = description;
-    document.getElementById("bookPublishedDateUpdateInput").value = publishedDate;
-    document.getElementById("bookGoogleIdUpdateInput").value = googleBookId;
-}
-
 // Update a book (PUT)
 document.getElementById("updateForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
-    let bookId = document.getElementById("bookIdToUpdate").value;
     let updatedBook = {
         title: document.getElementById("bookTitleUpdateInput").value,
         author: document.getElementById("bookAuthorUpdateInput").value,
@@ -159,43 +131,42 @@ document.getElementById("updateForm").addEventListener("submit", function(event)
         googleBookId: document.getElementById("bookGoogleIdUpdateInput").value,
     };
 
-    // Send a PUT request to update the book
+    let bookId = document.getElementById("bookIdToUpdate").value;
+
     fetch(`http://localhost:8080/books/${bookId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(updatedBook) // Convert the updated book object to JSON
+        body: JSON.stringify(updatedBook)
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        if (response.ok) {
+            alert('Book updated successfully');
+            loadSavedBooks(); // Refresh the saved books list
+        } else {
+            alert('Error updating book');
         }
-        return response.json(); // Parse the response as JSON
     })
-    .then(data => {
-        alert('Book updated!'); // Alert user on successful update
-        loadSavedBooks(); // Refresh the saved books list
-    })
-    .catch(error => console.error('Error:', error)); // Log any errors
+    .catch(error => console.error('Error:', error));
 });
 
-// Delete a book by ID (DELETE)
+// Delete a book (DELETE)
 document.getElementById("deleteForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent default form submission
-    let bookId = document.getElementById("bookIdToDelete").value; // Get the book ID to delete
+    event.preventDefault();
 
-    // Send a DELETE request to remove the book
+    let bookId = document.getElementById("bookIdToDelete").value;
+
     fetch(`http://localhost:8080/books/${bookId}`, {
         method: 'DELETE'
     })
     .then(response => {
         if (response.ok) {
-            alert('Book deleted!'); // Alert user on successful deletion
+            alert('Book deleted successfully');
             loadSavedBooks(); // Refresh the saved books list
         } else {
-            alert('Error deleting book.'); // Alert user on failure
+            alert('Error deleting book');
         }
     })
-    .catch(error => console.error('Error:', error)); // Log any errors
+    .catch(error => console.error('Error:', error));
 });

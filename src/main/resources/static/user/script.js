@@ -1,3 +1,25 @@
+// Function to accept cookies
+document.getElementById("acceptCookiesButton").addEventListener("click", function() {
+    document.getElementById("cookieBanner").style.display = 'none';
+    document.cookie = "cookiesAccepted=true; path=/"; // Save cookie acceptance
+});
+
+// Check if the cookies have been accepted at startup
+window.onload = function() {
+    if (document.cookie.indexOf("cookiesAccepted=true") === -1) {
+        document.getElementById("cookieBanner").style.display = 'block'; // Show cookie banner if not accepted
+    } else {
+        document.getElementById("cookieBanner").style.display = 'none'; // Hide cookie banner if accepted
+    }
+    loadSavedBooks(); // Load saved books when the page loads
+};
+
+// Sign-out and go back to index.html
+document.getElementById("signOutButton").addEventListener("click", function() {
+    // Clear session or any related sign-in data
+    window.location.href = "/index.html"; // Redirect to login page
+});
+
 // Search for books from Google Books API
 document.getElementById("searchForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -25,6 +47,7 @@ function displaySearchResults(books) {
     // Iterate over each book and display its details
     books.forEach(book => {
         const bookDiv = document.createElement("div");
+        bookDiv.classList.add('bookItem');
         bookDiv.innerHTML = `
             <h4>${book.volumeInfo.title}</h4>
             <p>Author(s): ${book.volumeInfo.authors.join(", ")}</p>
@@ -101,6 +124,7 @@ function displaySavedBooks(books) {
     // Iterate over each saved book and display its details
     books.forEach(book => {
         const bookDiv = document.createElement("div");
+        bookDiv.classList.add('bookItem');
         bookDiv.innerHTML = `
             <h4>${book.title}</h4>
             <p>Author(s): ${book.author}</p>
@@ -175,6 +199,3 @@ document.getElementById("deleteForm").addEventListener("submit", function(event)
     })
     .catch(error => console.error('Error:', error)); // Log any errors
 });
-
-// Load saved books on page load
-window.onload = loadSavedBooks; // Call loadSavedBooks when the page loads

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WS project GY</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1>Web-Services project in JAVA</h1>
+    <h2>(C)George Yossef</h2>
+    <!-- Logout Button -->
+    <button id="logoutButton" class="logoutButton">Logout</button>
+</header>
+
+<h2>Search Book</h2>
+<form id="searchForm">
+    <input type="text" id="titleInput" placeholder="Search by title" required>
+    <button type="submit">Search</button>
+</form>
+
+<div id="searchResults"></div>
+
+<h2>Add Book</h2>
+<form id="bookForm">
+    <input type="text" id="bookTitleInput" placeholder="Title" required>
+    <input type="text" id="bookAuthorInput" placeholder="Author" required>
+    <input type="text" id="bookDescriptionInput" placeholder="Description">
+    <input type="text" id="bookPublishedDateInput" placeholder="Published Date">
+    <input type="text" id="bookGoogleIdInput" placeholder="Google Book ID">
+    <button type="submit">Save Book</button>
+</form>
+
+<h2>Update Book</h2>
+<form id="updateForm">
+    <input type="text" id="bookIdToUpdate" placeholder="Enter Book ID to update" required>
+    <input type="text" id="bookTitleUpdateInput" placeholder="Title" required>
+    <input type="text" id="bookAuthorUpdateInput" placeholder="Author" required>
+    <input type="text" id="bookDescriptionUpdateInput" placeholder="Description">
+    <input type="text" id="bookPublishedDateUpdateInput" placeholder="Published Date">
+    <input type="text" id="bookGoogleIdUpdateInput" placeholder="Google Book ID">
+    <button type="submit">Update Book</button>
+</form>
+
+<h2>Delete Book</h2>
+<form id="deleteForm">
+    <input type="text" id="bookIdToDelete" placeholder="Enter Book ID to delete" required>
+    <button type="submit">Delete Book</button>
+</form>
+
+<h2>Saved Books</h2>
+<div id="savedBooks"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
