@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Service - AdminPage</title>
+    <link rel="stylesheet" href="adminDashboard.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>AdminPage - Books Service</h1>
+        <h2>Welcome, George!</h2>
+        <!-- Logout Button -->
+        <button id="logoutButton" class="logoutButton">Logout</button>
+    </header>
+
+    <section>
+        <h2>Search Book</h2>
+        <form id="searchForm">
+            <input type="text" id="titleInput" placeholder="Search by title" required>
+            <button type="submit">Search</button>
+        </form>
+        <div id="searchResults"></div>
+    </section>
+
+    <section>
+        <h2>Add Book</h2>
+        <form id="bookForm">
+            <input type="text" id="bookTitleInput" placeholder="Title" required>
+            <input type="text" id="bookAuthorInput" placeholder="Author" required>
+            <input type="text" id="bookDescriptionInput" placeholder="Description">
+            <input type="text" id="bookPublishedDateInput" placeholder="Published Date">
+            <input type="text" id="bookGoogleIdInput" placeholder="Google Book ID">
+            <button type="submit">Save Book</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Update Book</h2>
+        <form id="updateForm">
+            <input type="text" id="bookIdToUpdate" placeholder="Enter Book ID to update" required>
+            <input type="text" id="bookTitleUpdateInput" placeholder="Title" required>
+            <input type="text" id="bookAuthorUpdateInput" placeholder="Author" required>
+            <input type="text" id="bookDescriptionUpdateInput" placeholder="Description">
+            <input type="text" id="bookPublishedDateUpdateInput" placeholder="Published Date">
+            <input type="text" id="bookGoogleIdUpdateInput" placeholder="Google Book ID">
+            <button type="submit">Update Book</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Delete Book</h2>
+        <form id="deleteForm">
+            <input type="text" id="bookIdToDelete" placeholder="Enter Book ID to delete" required>
+            <button type="submit">Delete Book</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Saved Books</h2>
+        <div id="savedBooks"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 George Yossef. All rights reserved.</p>
+        <p><a href="https://georgedev.se" target="_blank">GeorgeDev.se</a></p>
+    </footer>
+</div>
+
+<script src="adminDashboard.js"></script>
+</body>
+</html>

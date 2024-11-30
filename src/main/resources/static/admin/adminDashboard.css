@@ -1,0 +1,157 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container to center all content */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: #f1f1f1; /* Light background color */
+    padding: 20px;
+    border-radius: 8px;
+    position: relative; /* To position the logout button correctly */
+}
+
+/* Header Title Styling */
+h1 {
+    color: #333;
+    font-size: 36px;
+}
+
+/* Subheading Styling */
+h2, h3 {
+    color: #555;
+}
+
+/* Button Styling */
+button {
+    padding: 12px 20px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+/* Logout Button Styling */
+.logoutButton {
+    background-color: #d9534f;
+    margin-top: 10px;
+}
+
+/* Align the logout button to the right in the header on large screens */
+@media (min-width: 1024px) {
+    .logoutButton {
+        position: absolute; /* Position relative to the header */
+        right: 20px; /* Move it 20px from the right edge */
+        top: 20px; /* Add some space from the top */
+    }
+}
+
+/* Input Fields and Textarea Styling */
+input, textarea {
+    padding: 12px;
+    margin-bottom: 12px;
+    width: calc(100% - 24px);
+    max-width: 600px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+textarea {
+    height: 120px;
+}
+
+/* Results and Saved Books Styling */
+#searchResults, #savedBooks {
+    margin-top: 20px;
+}
+
+.book-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Horizontal Rule Styling */
+hr {
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #777;
+    background-color: #f1f1f1; /* Light background color */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+footer a {
+    color: #5cb85c;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styling for Mobile Devices */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    input, textarea, button {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    footer {
+        font-size: 12px;
+    }
+}
