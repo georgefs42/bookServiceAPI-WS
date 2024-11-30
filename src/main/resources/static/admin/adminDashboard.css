@@ -27,7 +27,7 @@ header {
     background-color: #f1f1f1; /* Light background color */
     padding: 20px;
     border-radius: 8px;
-    position: relative; /* To position the logout button correctly */
+    position: relative; /* To position the login/logout button correctly */
 }
 
 /* Header Title Styling */
@@ -57,15 +57,27 @@ button:hover {
     background-color: #4cae4c;
 }
 
-/* Logout Button Styling */
-.logoutButton {
+/* Login and Logout Button Styling (same styling for both) */
+.logoutButton, .loginButton {
+    display: inline-block;
+    padding: 12px 20px;
     background-color: #d9534f;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
     margin-top: 10px;
 }
 
-/* Align the logout button to the right in the header on large screens */
+.logoutButton:hover, .loginButton:hover {
+    background-color: #c9302c;
+}
+
+/* Align the login/logout button to the right in the header on large screens */
 @media (min-width: 1024px) {
-    .logoutButton {
+    .logoutButton, .loginButton {
         position: absolute; /* Position relative to the header */
         right: 20px; /* Move it 20px from the right edge */
         top: 20px; /* Add some space from the top */
