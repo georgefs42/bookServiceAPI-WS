@@ -1,7 +1,7 @@
-package com.george.books_service.service;
+package com.george.books_service.services;
 
-import com.george.books_service.entity.Book;
-import com.george.books_service.repository.BookRepository;
+import com.george.books_service.models.Book;
+import com.george.books_service.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

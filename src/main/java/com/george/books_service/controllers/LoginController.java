@@ -1,4 +1,4 @@
-package com.george.books_service.controller;
+package com.george.books_service.controllers;
 
 import com.george.books_service.dto.LoginRequest;
 import com.george.books_service.dto.LoginResponse;

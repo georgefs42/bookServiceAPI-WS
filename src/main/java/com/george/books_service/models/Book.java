@@ -1,4 +1,4 @@
-package com.george.books_service.entity;
+package com.george.books_service.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,8 +1,8 @@
-package com.george.books_service.controller;
+package com.george.books_service.controllers;
 
-import com.george.books_service.entity.Book;
-import com.george.books_service.service.GoogleBooksService;
-import com.george.books_service.repository.BookRepository;
+import com.george.books_service.models.Book;
+import com.george.books_service.services.GoogleBooksService;
+import com.george.books_service.repositories.BookRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

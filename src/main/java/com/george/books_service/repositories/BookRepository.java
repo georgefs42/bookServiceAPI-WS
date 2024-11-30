@@ -1,6 +1,6 @@
-package com.george.books_service.repository;
+package com.george.books_service.repositories;
 
-import com.george.books_service.entity.Book;
+import com.george.books_service.models.Book;
 import org.springframework.data.jpa.repository.JpaRepository; // Importing JpaRepository for basic CRUD operations
 import org.springframework.stereotype.Repository;
 
