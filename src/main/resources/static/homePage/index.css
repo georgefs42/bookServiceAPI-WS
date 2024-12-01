@@ -1,4 +1,3 @@
-/* General body styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -24,10 +23,10 @@ body {
 header {
     text-align: center;
     margin-bottom: 30px;
-    background-color: #f1f1f1; /* Light background color */
+    background-color: #f1f1f1;
     padding: 20px;
     border-radius: 8px;
-    position: relative; /* To position the login/logout button correctly */
+    position: relative;
 }
 
 /* Header Title Styling */
@@ -81,9 +80,9 @@ button:hover {
 /* Align the login/logout button to the right in the header on large screens */
 @media (min-width: 1024px) {
     .logoutButton, .loginButton {
-        position: absolute; /* Position relative to the header */
-        right: 20px; /* Move it 20px from the right edge */
-        top: 20px; /* Add some space from the top */
+        position: absolute;
+        right: 20px;
+        top: 20px;
     }
 }
 
@@ -134,7 +133,7 @@ footer {
     margin-top: 40px;
     font-size: 14px;
     color: #777;
-    background-color: #f1f1f1; /* Light background color */
+    background-color: #f1f1f1;
     padding: 20px;
     border-radius: 8px;
 }
@@ -158,8 +157,8 @@ footer a:hover {
     color: white;
     padding: 15px;
     text-align: center;
-    display: none; /* Hidden by default */
-    z-index: 1000; /* Ensure the banner is on top */
+    display: none;
+    z-index: 1000;
 }
 
 .cookie-consent p {
