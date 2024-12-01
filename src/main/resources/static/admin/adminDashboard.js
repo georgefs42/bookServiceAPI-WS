@@ -1,7 +1,17 @@
 // Sign-out and go back to index.html
 document.getElementById("logoutButton").addEventListener("click", function() {
-    // Clear session or any related sign-in data
-    window.location.href = "/index.html"; // Redirect to login page
+    // Clear session or any related sign-in data (this is usually handled by the backend,
+    // but we can simulate by redirecting the user to logout endpoint)
+    fetch('/logout', {
+        method: 'POST',  // Use POST to trigger the logout
+        credentials: 'same-origin',  // Include cookies for session handling
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = "/index.html";  // Redirect to index.html after logout
+        }
+    })
+    .catch(error => console.error('Error during logout:', error));
 });
 
 // Search for books from Google Books API
