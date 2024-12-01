@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books Service - UserPage</title>
-    <link rel="stylesheet" href="admin/adminDashboard.css">
+    <link rel="stylesheet" href="homePage/index.css">
 </head>
 <body>
 <div class="container">
@@ -12,10 +12,10 @@
         <h1>Books Service</h1>
         <h2>Welcome to Books Service, powered by Google Books API!</h2>
         <!-- Login button styled the same as the logout button -->
-        <a href="/admin/admindashboard.html" class="logoutButton">Login</a>./gradlew clean build
+        <a href="/admin/admindashboard.html" class="logoutButton">Login</a>
     </header>
 
-    <section>
+    <section id="bookSection" style="display: none;">
         <h2>Search for a Book</h2>
         <!-- Search form -->
         <form id="searchForm">
@@ -34,7 +34,15 @@
     </footer>
 </div>
 
-<!-- JavaScript file to handle search functionality -->
+<!-- Cookie consent section -->
+<div id="cookieConsent" class="cookie-consent">
+    <p>This site uses cookies to improve your experience. By using this site, you agree to our use of cookies.</p>
+    <button id="acceptCookies" class="cookie-button">Allow Cookies</button>
+    <button id="declineCookies" class="cookie-button">Decline</button>
+    <button id="moreInfoCookies" class="cookie-button">More Info</button>
+</div>
+
+<!-- JavaScript file to handle search functionality and cookie consent -->
 <script src="homePage/index.js"></script>
 </body>
 </html>
