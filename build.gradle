@@ -24,23 +24,40 @@ repositories {
 }
 
 dependencies {
+	// Web and database support
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.postgresql:postgresql'
+
+	// Spring Security for authentication/authorization
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// Lombok for reducing boilerplate code
 	implementation 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Validation and JSON parsing
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.json:json:20210307'
+
+	// Development tools
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+	// Jakarta validation API
 	implementation 'jakarta.validation:jakarta.validation-api'
+
+	// Spring Boot DevTools for runtime reloading
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 
+	// Optional: Thymeleaf template engine (if you're using it for HTML rendering)
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 // Enable annotation processing
 compileJava.options.annotationProcessorPath = configurations.annotationProcessor
-
 
 tasks.named('test') {
 	useJUnitPlatform()
