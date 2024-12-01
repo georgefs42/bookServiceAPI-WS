@@ -1,5 +1,6 @@
 package com.george.books_service.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +13,12 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+
+    @Value("${app.username}")
+    private String username;
+
+    @Value("${app.password}")
+    private String password;
 
     // Bean to handle password encoding (BCrypt)
     @Bean
@@ -51,14 +58,13 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // Define an in-memory user store with a single admin user
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         return new InMemoryUserDetailsManager(
-                User.withUsername("admin")
-                        .password(passwordEncoder.encode("123456")) // BCrypt hashed password
+                User.withUsername(username)
+                        .password(passwordEncoder.encode(password)) // BCrypt hashed password
                         .roles("ADMIN")  // Assign "ADMIN" role to this user
                         .build()
         );
     }
-}
+    }
