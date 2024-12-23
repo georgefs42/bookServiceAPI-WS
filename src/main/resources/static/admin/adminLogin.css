@@ -1,0 +1,125 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main container to center content */
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Heading style */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form container styling */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Input fields styling */
+input[type="text"], input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Button styling */
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Logout container styling */
+.logout-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Logout button styling */
+#logoutButton {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#logoutButton:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design - Mobile First */
+
+/* For small screens, like mobile phones */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="password"],
+    .form-container button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .logout-container {
+        margin-top: 15px;
+    }
+}
+
+/* For larger screens like tablets and desktops */
+@media (min-width: 600px) {
+    .container {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="password"],
+    .form-container button {
+        font-size: 16px;
+        padding: 12px;
+    }
+}

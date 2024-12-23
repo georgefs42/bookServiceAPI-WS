@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login and User Management</title>
+    <link rel="stylesheet" href="adminLogin.css">
+</head>
+<body>
+<div class="container">
+    <h1>Admin User Management</h1>
+
+    <!-- Create User Form -->
+    <div class="form-container">
+        <h3>Create New User</h3>
+        <input type="text" id="postUsername" placeholder="Username" required />
+        <input type="password" id="postPassword" placeholder="Password" required />
+        <input type="text" id="postRoles" placeholder="ADMIN" required />
+        <button onclick="createUser()">Create User</button>
+    </div>
+
+    <!-- Result message -->
+    <div id="result"></div>
+
+    <!-- Logout Button - Links to /login/login.html -->
+    <div class="logout-container">
+        <a href="/login/login.html" id="logoutButton">Logout</a>
+    </div>
+
+</div>
+
+<script src="adminLogin.js"></script>
+</body>
+</html>
