@@ -9,7 +9,7 @@
 <body>
 <div class="login-container">
     <h1>Login</h1>
-    <form action="/login" method="post">
+    <form id="login-form">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
 
@@ -17,11 +17,10 @@
         <input type="password" id="password" name="password" required>
 
         <button type="submit">Login</button>
+        <p id="error-message" style="color: red; display: none;"></p> <!-- Error message container -->
     </form>
-
-    <!-- Optional error/success messages -->
-    <p class="error" style="display: none;">Invalid username or password.</p>
-    <p class="success" style="display: none;">Logged out successfully.</p>
 </div>
+
+<script src="login.js"></script>
 </body>
 </html>

@@ -1,12 +1,11 @@
 package com.george.books_service.security;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.george.books_service.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -14,32 +13,37 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    @Value("${app.username}")
-    private String username;
+    private final UserService userService;
 
-    @Value("${app.password}")
-    private String password;
+    public SecurityConfig(UserService userService) {
+        this.userService = userService;
+    }
 
-    // Bean to handle password encoding (BCrypt)
+    /**
+     * Password encoder to securely hash and verify passwords.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Security filter chain to configure HTTP security.
+     */
     // Security filter chain bean
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 // Authorization rules
                 .authorizeRequests(auth -> auth
-                        .requestMatchers("/admin/admindashboard.html").hasRole("ADMIN")  // Only "ADMIN" can access
+                        .requestMatchers("/login/admindashboard.html").hasRole("ADMIN")  // Only "ADMIN" can access
                         .anyRequest().permitAll()  // Allow all other requests
                 )
                 // Form login configuration
                 .formLogin(form -> form
                         .loginPage("/login/login.html")  // Custom login page
                         .loginProcessingUrl("/login")  // Login processing URL
-                        .defaultSuccessUrl("/admin/admindashboard.html", true)  // Redirect after successful login
+                        .defaultSuccessUrl("/login/admindashboard.html", true)  // Redirect after successful login
                         .failureUrl("/login/login.html?error=true")  // Redirect after failed login
                         .permitAll()
                 )
@@ -61,14 +65,16 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // User details service for in-memory authentication
+    /**
+     * UserDetailsService to load user details from the database.
+     */
     @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        return new InMemoryUserDetailsManager(
-                User.withUsername(username)
-                        .password(passwordEncoder.encode(password))  // Use encoded password
-                        .roles("ADMIN")  // Assign "ADMIN" role
-                        .build()
-        );
+    public UserDetailsService userDetailsService() {
+        return username -> userService.findByUsername(username)
+                .map(user -> User.withUsername(user.getUsername())
+                        .password(user.getPassword())  // Use hashed password
+                        .roles(user.getRoles().toArray(new String[0]))  // Dynamically assign roles
+                        .build())
+                .orElseThrow(() -> new RuntimeException("User not found with username: " + username));
     }
 }
